@@ -1,45 +1,18 @@
-function route(app, bookCollection) {
-    app.get('/', (req, res) => {
-        res.send('Hello world!')
-    });
+const BooksController = require('../controllers/BooksController')
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const Books = require('../models/Books');
 
-    // post a book
-    app.post("/upload-book", async(req, res) => {
-        const data = req.body;
-        const result = await bookCollection.insertOne(data);
-        res.send(result);     
-    });
-
-    // app.patch("/book/:id", async(req, res) => {
-    //     const id = req.params.id; 
-    //     const updateBookData = req.body;
-    //     const filter = {_id: new ObjectId(id)};
-    //     const updateDoc = {
-    //       $set: {
-    //         ...updateBookData
-    //       },
-    //     }
-    //     const options = {upsert: true};
-    //     const result = await bookCollection.updateOne(filter, updateDoc, options);
-    //     res.send(result);
-    //   })
+function route(app) {
+    app.get('/', BooksController.index);
 
     // find by category 
-    app.get("/all-books", async(req, res) => {
-        let query = {};
-        if(req.query?.category) {
-          query = {category: req.query.category}
-        }
-        const result = await bookCollection.find(query).toArray();
-        res.send(result);
-    })
-
-    // app.get("/book/:id", async(req, res) => {
-    //     const id = req.params.id;
-    //     const filter = { _id: new ObjectId(id)};
-    //     const result = await bookCollection.findOne(filter);
-    //     res.send(result);
-    // })
+    app.get("/all-books", BooksController.findByCategory)
+    // get a book 
+    app.get("/book/:id", BooksController.findById)
+    app.post("/upload-book", BooksController.create )
+    app.patch("/book/:id", BooksController.updateById)
+    app.delete("/book/:id", BooksController.deleteById)
+   
 }
 
 module.exports = route;

@@ -1,0 +1,231 @@
+[{
+  "_id": {
+    "$oid": "65e814542edfb091ad0ee4df"
+  },
+  "bookTitle": "Fourth Wing",
+  "authorName": "Rebecca Yarros",
+  "imageURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1701980900l/61431922._SY475_.jpg",
+  "category": "Romantasy",
+  "bookDescription": "This year’s most unstoppable book, Rebecca Yarros’ dragon-rider fantasy/romance surfed an atmospheric river of BookTok support straight to the bestseller stratosphere. Yarros’ astonishing success has earned the author a massive fandom of devoted readers, and the book helped popularize the emerging consensus term for 2023’s hottest hybrid genre: romantasy.",
+  "bookPDFURL": "https://www.goodreads.com/choiceawards/best-romantasy-books-2023"
+},
+{
+  "_id": {
+    "$oid": "65e814bc2edfb091ad0ee4e0"
+  },
+  "bookTitle": "Hell Bent",
+  "authorName": " Leigh Bardugo",
+  "imageURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1648744814l/60652997.jpg",
+  "category": "Fantasy",
+  "bookDescription": "Leigh Bardugo is back on top with Hell Bent, the winner of this year’s Fantasy category. Not coincidentally, the book is the sequel to Ninth House, 2019’s winner in Fantasy. Bardugo’s beloved series has established a new trajectory for dark academia books, promising Ivy League hopefuls a world of secret societies, occult rituals, and interdimensional portals.",
+  "bookPDFURL": "https://www.goodreads.com/choiceawards/best-fantasy-books-2023"
+},
+{
+  "_id": {
+    "$oid": "65e815512edfb091ad0ee4e1"
+  },
+  "bookTitle": "In the Lives of Puppets",
+  "authorName": "  T.J. Klune",
+  "imageURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1699617963l/60784549._SY475_.jpg",
+  "category": "Science Fiction",
+  "bookDescription": "With its skillful mix of fantasy and science fiction elements, T.J. Klune’s innovative novel brings the core concepts of the Pinocchio legend into the notional environs of the 21st century and beyond. Androids! Anxieties! Found families! Klune has an intuitive feel for this kind of modern mythmaking, bringing contemporary resonance to this classic tale.",
+  "bookPDFURL": "https://www.goodreads.com/choiceawards/best-science-fiction-books-2023"
+},
+{
+  "_id": {
+    "$oid": "65e8178e2edfb091ad0ee4e2"
+  },
+  "bookTitle": "Holly",
+  "authorName": " Stephen King",
+  "imageURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1674418461l/65916344.jpg",
+  "category": "Horror",
+  "bookDescription": "As elder statesman and genre godfather, Stephen King is a familiar name in the Horror category. He returns this year with Holly, which pits an old fan-favorite character—private investigator Holly Gibney—against a pair of uniquely depraved antagonists. King’s book is part character study, part thriller, and part cautionary tale concerning octogenarian academics.",
+  "bookPDFURL": "https://www.goodreads.com/choiceawards/best-horror-books-2023"
+},
+{
+  "_id": {
+    "$oid": "65e96b32f09d43146a302d76"
+  },
+  "bookTitle": "Madness",
+  "authorName": "Antonia Hylton",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700681997i/145624993.jpg",
+  "category": "History",
+  "bookDescription": "In the tradition of  The Immortal Life of Henrietta Lacks , a page-turning 93-year history of Crownsville Hospital, one of the nation’s last segregated asylums, that  New York Times  bestselling author Clint Smith describes as “a book that left me breathless.”",
+  "bookPDFURL": "https://www.goodreads.com/book/show/145624993-madness"
+},
+{
+  "_id": {
+    "$oid": "65e96baef09d43146a302d77"
+  },
+  "bookTitle": "Praisesong for the Kitchen Ghosts ",
+  "authorName": "Crystal Wilkinson",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1690163505i/123286433.jpg",
+  "category": "History",
+  "bookDescription": "A lyrical culinary journey that explores the hidden legacy of Black Appalachians, through powerful storytelling alongside nearly forty comforting recipes, from the former poet laureate of Kentucky. People are always surprised that Black people reside in the hills of Appalachia. Those not surprised that we were there, are surprised that we stayed.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/123286433-praisesong-for-the-kitchen-ghosts"
+},
+{
+  "_id": {
+    "$oid": "65e96c3ff09d43146a302d78"
+  },
+  "bookTitle": "Disillusioned ",
+  "authorName": "Benjamin Herold",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1681788463i/134939419.jpg",
+  "category": "History",
+  "bookDescription": "Through the stories of five American families, a masterful and timely exploration of how hope, history, and racial denial collide in the suburbs and their schools. Outside Atlanta, a middle-class Black family faces off with a school system seemingly bent on punishing their teenage son. North of Dallas, a conservative white family relocates to an affluent suburban enclave, but can’t escape the changes sweeping the country. On Chicago’s North Shore, a multiracial mom joins an ultraprogressive challenge to the town’s liberal status quo. In Compton, California, whose suburban roots are now barely recognizable, undocumented Hispanic parents place their gifted son’s future in the hands of educators at a remarkable elementary school. And outside Pittsburgh, a Black mother moves to the same street where the author grew up, then confronts the destructive legacy left behind by white families like his.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/134939419-disillusioned"
+},
+{
+  "_id": {
+    "$oid": "65e96d52f09d43146a302d79"
+  },
+  "bookTitle": "Our Moon ",
+  "authorName": "Rebecca Boyle",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1684815473i/134117265.jpg",
+  "category": "History",
+  "bookDescription": "An intimate look at the Moon and its relationship to life on Earth--from the primordial soup to the Artemis launches--from an acclaimed Scientific American and Atlantic contributor. Far from being a lifeless ornament in the sky, the Moon holds the key to some of science’s central questions, and in this fascinating account of our remarkable satellite, award-winning science journalist Rebecca Boyle shows us why it is the secret to our success.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/134117265-our-moon"
+},
+{
+  "_id": {
+    "$oid": "65e96ff1f09d43146a302d7a"
+  },
+  "bookTitle": "End of Story ",
+  "authorName": " A.J. Finn",
+  "imageURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1701247299l/202914347.jpg",
+  "category": "Thriller",
+  "bookDescription": "So writes Sebastian Trapp, reclusive mystery novelist, to his longtime correspondent Nicky Hunter, an expert in detective fiction. With mere months to live, Trapp invites Nicky to his spectacular San Francisco mansion to help draft his life story . . . living alongside his beautiful second wife, Diana; his wayward nephew, Freddy; and his protective daughter, Madeleine. Soon Nicky finds herself caught in an irresistible case of real-life “detective fever.”",
+  "bookPDFURL": "https://www.goodreads.com/book/show/202914347-end-of-story"
+},
+{
+  "_id": {
+    "$oid": "65e97040f09d43146a302d7b"
+  },
+  "bookTitle": "The Tainted Cup",
+  "authorName": "Robert Jackson Bennett",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1689268335i/150247395.jpg",
+  "category": "Thriller",
+  "bookDescription": "In Daretana’s most opulent mansion, a high Imperial officer lies dead—killed, to all appearances, when a tree spontaneously erupted from his body. Even in this canton at the borders of the Empire, where contagions abound and the blood of the Leviathans works strange magical changes, it’s a death at once terrifying and impossible.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/150247395-the-tainted-cup"
+},
+{
+  "_id": {
+    "$oid": "65e9718cf09d43146a302d7c"
+  },
+  "bookTitle": "The Guest",
+  "authorName": "B.A. Paris",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1674066928i/65213277.jpg",
+  "category": "Thriller",
+  "bookDescription": "New York Times bestselling author B. A. Paris captivated psychological thriller readers everywhere with Behind Closed Doors. Now she invites you into another home full of heart-pounding secrets, in The Guest.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/65213277-the-guest"
+},
+{
+  "_id": {
+    "$oid": "65e971c4f09d43146a302d7d"
+  },
+  "bookTitle": "The Book of Love",
+  "authorName": "Kelly Link",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1695356776i/157981682.jpg",
+  "category": "Thriller",
+  "bookDescription": "The Book of Love showcases Kelly Link at the height of her powers, channeling potent magic and attuned to all varieties of love—from friendship to romance to abiding family ties—with her trademark compassion, wit, and literary derring-do. Readers will find joy (and a little terror) and an affirmation that love goes on, even when we cannot.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/157981682-the-book-of-love"
+},
+{
+  "_id": {
+    "$oid": "65e97269f09d43146a302d7e"
+  },
+  "bookTitle": "A Fate Inked in Blood",
+  "authorName": "Danielle L. Jensen",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1690490514i/165940202.jpg",
+  "category": "Romance",
+  "bookDescription": "A shield maiden blessed by the gods battles to unite a nation under a power-hungry king—while also fighting her growing desire for his fiery son—in this Norse-inspired fantasy romance from the bestselling author of The Bridge Kingdom series.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/165940202-a-fate-inked-in-blood"
+},
+{
+  "_id": {
+    "$oid": "65e972b6f09d43146a302d7f"
+  },
+  "bookTitle": "Heartless Hunter",
+  "authorName": "Kristen Ciccarelli",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1683734080i/127305713.jpg",
+  "category": "Romance",
+  "bookDescription": "A steamy game of cat and mouse between witch and witch-hunter, played out against a backdrop of opulence, secrets, and bloody history.On the night Rune’s life changed forever, blood ran in the streets. Now, in the aftermath of a devastating revolution, witches have been diminished from powerful rulers to outcasts ruthlessly hunted due to their waning magic, and Rune must hide what she is.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/127305713-heartless-hunter"
+},
+{
+  "_id": {
+    "$oid": "65e973caf09d43146a302d80"
+  },
+  "bookTitle": "A Love Song for Ricki Wilde",
+  "authorName": "Tia Williams",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1688215621i/173404023.jpg",
+  "category": "Romance",
+  "bookDescription": "Leap years are a strange, enchanted time. And for some, even a single February can be life-changing. Ricki Wilde has many talents, but being a Wilde isn’t one of them. As the impulsive, artistic daughter of a powerful Atlanta dynasty, she’s the opposite of her famous socialite sisters. Where they’re long-stemmed roses, she’s a dandelion: an adorable bloom that’s actually a weed, born to float wherever the wind blows. In her bones, Ricki knows that somewhere, a different, more exciting life awaits her..",
+  "bookPDFURL": "https://www.goodreads.com/book/show/173404023-a-love-song-for-ricki-wilde"
+},
+{
+  "_id": {
+    "$oid": "65e97460f09d43146a302d81"
+  },
+  "bookTitle": "Fangirl Down",
+  "authorName": "Tessa Bailey",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1689982215i/150343880.jpg",
+  "category": "Romance",
+  "bookDescription": "Wells Whitaker was once golf’s hottest rising star, but lately, all he has to show for his “promising” career is a killer hangover, a collection of broken clubs, and one remaining supporter. No matter how bad he plays, the beautiful, sunny redhead is always on the sidelines. He curses, she cheers. He scowls, she smiles. But when Wells quits in a blaze of glory and his fangirl finally goes home, he knows he made the greatest mistake of his life.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/150343880-fangirl-down"
+},
+{
+  "_id": {
+    "$oid": "65f004dc28b15532566ff5b3"
+  },
+  "bookTitle": "update",
+  "authorName": "",
+  "imageURL": "qưer",
+  "category": "History",
+  "bookDescription": "qưer",
+  "bookPDFURL": "qưer"
+},
+{
+  "_id": {
+    "$oid": "65f00e2128b15532566ff5b6"
+  },
+  "bookTitle": "test2",
+  "authorName": "Tung",
+  "imageURL": "hahakkk",
+  "category": "History",
+  "bookDescription": "hahakkk",
+  "bookPDFURL": "123kkk"
+},
+{
+  "_id": {
+    "$oid": "65f115ba3343c3f3883ff1cf"
+  },
+  "bookTitle": "Fangirl Down",
+  "authorName": "Tessa Bailey",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1689982215i/150343880.jpg",
+  "category": "Romance",
+  "bookDescription": "Wells Whitaker was once golf’s hottest rising star, but lately, all he has to show for his “promising” career is a killer hangover, a collection of broken clubs, and one remaining supporter. No matter how bad he plays, the beautiful, sunny redhead is always on the sidelines. He curses, she cheers. He scowls, she smiles. But when Wells quits in a blaze of glory and his fangirl finally goes home, he knows he made the greatest mistake of his life.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/150343880-fangirl-down"
+},
+{
+  "_id": {
+    "$oid": "65f117de42ae3bb35a78d034"
+  },
+  "bookTitle": "Fangirl Down2",
+  "authorName": "Tessa Bailey",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1689982215i/150343880.jpg",
+  "category": "Romance",
+  "bookDescription": "Wells Whitaker was once golf’s hottest rising star, but lately, all he has to show for his “promising” career is a killer hangover, a collection of broken clubs, and one remaining supporter. No matter how bad he plays, the beautiful, sunny redhead is always on the sidelines. He curses, she cheers. He scowls, she smiles. But when Wells quits in a blaze of glory and his fangirl finally goes home, he knows he made the greatest mistake of his life.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/150343880-fangirl-down"
+},
+{
+  "_id": {
+    "$oid": "65f1305cb8353d8fe5cde2e9"
+  },
+  "bookTitle": "Fangirl Down3",
+  "authorName": "Tessa Bailey",
+  "imageURL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1689982215i/150343880.jpg",
+  "category": "Romance",
+  "bookDescription": "Wells Whitaker was once golf’s hottest rising star, but lately, all he has to show for his “promising” career is a killer hangover, a collection of broken clubs, and one remaining supporter. No matter how bad he plays, the beautiful, sunny redhead is always on the sidelines. He curses, she cheers. He scowls, she smiles. But when Wells quits in a blaze of glory and his fangirl finally goes home, he knows he made the greatest mistake of his life.",
+  "bookPDFURL": "https://www.goodreads.com/book/show/150343880-fangirl-down"
+}]
