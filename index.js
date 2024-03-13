@@ -3,13 +3,11 @@ const app = express()
 const cors = require('cors')
 const port = process.env.PORT || 3001;
 
+const route = require('./src/routes/index');
+
+// cho phep ket noi den database 
 app.use(cors());
 app.use(express.json())
-
-
-app.get('/', (req, res) => {
-    res.send('Hello world!')
-})
 
 // 9QtEWA38Yiu9MkS6
 
@@ -31,20 +29,13 @@ async function run() {
     await client.connect();
 
     const bookCollection = client.db("BookInventory").collection("books");
-
+    route(app, bookCollection);
     // get all book 
     // app.get("/all-books", async(req, res) => {
     //   const books = bookCollection.find();
     //   const result = await books.toArray();
     //   res.send(result);
     // })
-
-    // insert a book
-    app.post("/upload-book", async(req, res) => {
-      const data = req.body;
-      const result = await bookCollection.insertOne(data);
-      res.send(result);     
-  })
 
     //update a book 
     app.patch("/book/:id", async(req, res) => {
@@ -69,15 +60,8 @@ async function run() {
       res.send(result);
     })
 
-    // find by category 
-    app.get("/all-books", async(req, res) => {
-      let query = {};
-      if(req.query?.category) {
-        query = {category: req.query.category}
-      }
-      const result = await bookCollection.find(query).toArray();
-      res.send(result);
-    })
+   
+
 
     // get single book data
     app.get("/book/:id", async(req, res) => {
