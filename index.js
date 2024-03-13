@@ -14,7 +14,7 @@ app.use(express.json())
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = process.env.DB_URI || "mongodb+srv://hoangphikiemkhach:9QtEWA38Yiu9MkS6@book-store.xwsw6kc.mongodb.net/?retryWrites=true&w=majority&appName=book-store";
-
+// mongodb+srv://hoangphikiemkhach:9QtEWA38Yiu9MkS6@book-store.xwsw6kc.mongodb.net/?retryWrites=true&w=majority&appName=book-store
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -25,9 +25,8 @@ const client = new MongoClient(uri, {
 });
     route(app);
 
-    
 
-mongoose.set("strictQuery", false)
+// mongoose.set("strictQuery", false)
 mongoose.connect(`${uri}/BookInventory`)
 .then(() => {
     console.log('Connected to mongoDB')
