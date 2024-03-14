@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const jwt = require('jsonwebtoken');
 
 // [POST] sign up user 
 const signup = async (req, res) => {
@@ -35,8 +36,14 @@ const login = async (req, res) => {
        if(password !== user.password) {
             return res.status(401).json({message: 'Invalid credentials'});
        }
+       const token = jwt.sign({
+            _id : user._id
+       }, 'MK')
 
-        res.json({ message: 'Login successful' });
+        res.json({ 
+            message: 'Login successful',
+            token: token
+         });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
