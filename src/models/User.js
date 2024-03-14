@@ -7,7 +7,7 @@ const User = new Schema({
     phone: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, minlength: 8 },
-    is_admin: { type: Boolean, required: true },
+    is_admin: { type: Boolean, default: false },
     createdAt: {type: Date, default: Date.now}, 
     updateAt: {type: Date, default: Date.now},
 });
