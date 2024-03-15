@@ -27,7 +27,8 @@ const client = new MongoClient(uri, {
 
 
 // mongoose.set("strictQuery", false)
-mongoose.connect(`${uri}/BookInventory`)
+// mongoose.connect(`${uri}/BookInventory`)
+mongoose.connect(uri, { dbName: "BookInventory" })
 .then(() => {
     console.log('Connected to mongoDB')
     app.listen(port, () => {
