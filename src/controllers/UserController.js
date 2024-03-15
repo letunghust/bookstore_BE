@@ -1,13 +1,15 @@
 const User = require('../models/User');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 // [POST] sign up user 
 const signup = async (req, res) => {
     const { name, surname, phone, email, password, is_admin } = req.body;
 
     try {
-        const newUser = new User({ name, surname, phone, email, password, is_admin });
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({ name, surname, phone, email, password: hashedPassword, is_admin });
         await newUser.save();
         res.status(201).json(newUser);
     } catch (error) {
@@ -27,15 +29,16 @@ const login = async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        // const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, user.password);
 
-        // if (!isMatch) {
-        //     return res.status(401).json({ message: 'Invalid credentials' });
-        // }
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
 
-       if(password !== user.password) {
-            return res.status(401).json({message: 'Invalid credentials'});
-       }
+    //    if(password !== user.password) {
+    //         return res.status(401).json({message: 'Invalid credentials'});
+    //    }
+       // trả về token 
        const token = jwt.sign({
             _id : user._id
        }, 'MK')
