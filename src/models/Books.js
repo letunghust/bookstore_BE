@@ -9,8 +9,10 @@ const Books = new Schema({
     category: {type: String},
     bookDescription: {type: String},
     bookPDFURL: {type: String}, 
-    createdAt: {type: Date, default: Date.now}, 
-    updateAt: {type: Date, default: Date.now},
+    // createdAt: {type: Date, default: Date.now}, 
+    // updateAt: {type: Date, default: Date.now},
+},{
+    timestamps: true, 
 });
 
 module.exports = mongoose.model('Books', Books); 

@@ -5,11 +5,11 @@ const bcrypt = require('bcrypt');
 
 // [POST] sign up user 
 const signup = async (req, res) => {
-    const { name, surname, phone, email, password, is_admin } = req.body;
+    const { name, surname, phone, email, password } = req.body;
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ name, surname, phone, email, password: hashedPassword, is_admin });
+        const newUser = new User({ name, surname, phone, email, password: hashedPassword });
         await newUser.save();
         res.status(201).json(newUser);
     } catch (error) {
@@ -35,9 +35,6 @@ const login = async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-    //    if(password !== user.password) {
-    //         return res.status(401).json({message: 'Invalid credentials'});
-    //    }
        // trả về token 
        const token = jwt.sign({
             _id : user._id
