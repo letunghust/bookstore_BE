@@ -2,6 +2,7 @@ const User = require('../models/User');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const sendMail = require('../utils/sendMail')
 
 // [POST] sign up user 
 const signup = async (req, res) => {
@@ -92,8 +93,41 @@ const getUserById = async (req, res) => {
     }
 }
 
-exports.signup = signup;
-exports.login = login;
-exports.getAllUsers = getAllUsers;
-exports.getUserById = getUserById; 
-exports.updateUser = updateUser;
+const forgotPassword = async (req, res) => {
+    try {
+      const { email } = req.query;
+      if (!email) return res.status(400).json({ error: 'Missing email' });
+  
+      const user = await User.findOne({ email });
+      if (!user) return res.status(404).json({ error: 'User not found' });
+  
+      const resetToken = user.createPasswordChangedToken();
+      await user.save();
+  
+      const resetUrl = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`;
+      const html = `Click vào link này để thay đổi mật khẩu. Link sẽ hết hạn sau 15 phút. <a href="${resetUrl}">click here</a>`;
+      const data = { to: email, html };
+      const rs = await sendMail(data);
+  
+      return res.status(200).json({ success: true, rs });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+
+// exports.signup = signup;
+// exports.login = login;
+// exports.getAllUsers = getAllUsers;
+// exports.getUserById = getUserById; 
+// exports.updateUser = updateUser;
+// exports.forgotPassword = forgotPassword;
+
+module.exports = {
+    signup,
+    login,
+    getAllUsers,
+    getUserById,
+    updateUser,
+    forgotPassword,
+}

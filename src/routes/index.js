@@ -25,7 +25,7 @@ function route(app) {
     // Login
     app.post("/login", UserControllers.login)
     app.patch("/user/:id", UserControllers.updateUser);
-    
+    app.get("/fogotpassword", UserControllers.forgotPassword);
 }
 
 module.exports = route;

@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose');
 const port = process.env.PORT || 3001;
+require('dotenv').config();
 
 const route = require('./src/routes/index');
 
@@ -39,3 +40,5 @@ mongoose.connect(uri, { dbName: "BookInventory" })
 })
 
 console.log(process.env.PORT)
+console.log(process.env.EMAIL_NAME)
+console.log(process.env.EMAIL_APP_PASSWORD)
