@@ -3,7 +3,7 @@ const Cart = require('../models/Cart');
 // [GET] get cart 
 const getCart = async(req, res) => {
     try{
-        const cart = await Cart.findOne({user: req.user.id}).populate('books.book');
+        const cart = await Cart.findOne({user: req.user._id}).populate('books.book');
         if (!cart || !cart.books) {
             return res.status(404).json({message: 'Cart is empty or not found'});
         }
@@ -18,25 +18,37 @@ const getCart = async(req, res) => {
 // [POST] add book to cart 
 const addBookToCart = async (req, res) => {
     try{
-        const userId = req.user.id;
+        const userId = req.user._id;
+        console.log(userId)
         const bookId = req.params.bookId;
+        console.log(bookId)
         const quantity = req.body.quantity;
+        console.log(quantity)
 
-        const cart = await Cart.findOne({user: userId});
+        let cart = await Cart.findOne({user: userId});
         console.log(cart);
 
+        if (!cart) {
+            cart = new Cart({ user: userId, books: [] });
+        }
+        // if (!books) {
+        //     return res.status(404).send({ message: 'Book not found' });
+        // }
         const index = cart.books.findIndex(book => book.book.toString === bookId); 
-
+        
         if(index !== -1) {
             cart.books[index].quantity += quantity;
         } else{
             cart.books.push({book: bookId, quantity: quantity});
         }
 
+         // Cập nhật thông tin giỏ hàng (giá sách, tổng giá trị giỏ hàng, ...)
+        // cart.totalPrice = cart.books.reduce((total, item) => total + item.quantity * item.book.price, 0);
         await cart.save();
 
         res.status(200).send({messsage: 'Book added to cart successfully'});
     } catch(error) {
+        console.log(error)
         res.status(500).send({messsage: 'Error adding booking to cart'}); 
     }
 }
@@ -100,7 +112,7 @@ const clearCart = async(req, res) => {
 // [GET] caculate total price
 const calculateTotalPrice = async(req, res) => {
     try{
-        const cart = await Cart.findOne({user: req.user.id}).populate('books.book')
+        const cart = await Cart.findOne({user: req.user._id}).populate('books.book')
         let totalPrice = 0;
         cart.books.forEach(book => {
             totalPrice += book.book.price * book.quantity;

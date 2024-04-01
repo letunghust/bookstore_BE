@@ -20,7 +20,7 @@ const CartSchema = new Schema({
     }],
     total_price: {
         type: Number, 
-        required: true,
+        // required: true,
     },
 }, {
     timestamps: true, 
