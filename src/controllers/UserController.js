@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const sendMail = require('../utils/sendMail')
 
+
 // [POST] sign up user 
 const signup = async (req, res) => {
     const { name, surname, phone, email, password } = req.body;
@@ -39,7 +40,7 @@ const login = async (req, res) => {
        // trả về token 
        const token = jwt.sign({
             _id : user._id
-       }, 'MK')
+       }, process.env.JWT_SECRET)
 
         res.json({ 
             message: 'Login successful',

@@ -1,14 +1,16 @@
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
-const Books = require('../models/Books');
-const User = require('../models/User')
+// const Books = require('../models/Books');
+// const User = require('../models/User')
+const verifyToken = require('../middleware/auth')
 const BooksController = require('../controllers/BooksController')
 const UserControllers = require('../controllers/UserController')
-
+const CartController = require('../controllers/CartController')
 
 function route(app) {
     app.get('/', BooksController.index);
 
+    // BOOK
     // find by category 
     app.get("/all-books", BooksController.findByCategory)
     // get a book 
@@ -26,6 +28,14 @@ function route(app) {
     app.post("/login", UserControllers.login)
     app.patch("/user/:id", UserControllers.updateUser);
     app.get("/fogotpassword", UserControllers.forgotPassword);
+
+    // CART
+    app.get("/cart", verifyToken, CartController.getCart);
+    app.post("/add/:bookId", verifyToken, CartController.addBookToCart);
+    app.put("/remove/:bookId", verifyToken, CartController.removeBookFromCart);
+    app.patch("/cart/quantity", verifyToken, CartController.updateBookQuantity);
+    app.put("/clear", verifyToken, CartController.clearCart);
+    app.get("/cart/totalprice", verifyToken, CartController.calculateTotalPrice);
 }
 
 module.exports = route;
