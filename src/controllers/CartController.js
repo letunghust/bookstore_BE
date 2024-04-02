@@ -21,24 +21,25 @@ const addBookToCart = async (req, res) => {
     try{
         const userId = req.user._id;
         const bookId = req.params.bookId;
+        console.log(bookId)
         const quantity = req.body.quantity;
 
         let cart = await Cart.findOne({user: userId});
-
+        console.log(cart)
         if (!cart) {
             cart = new Cart({ user: userId, books: [] });
         }
-        // if (!books) {
-        //     return res.status(404).send({ message: 'Book not found' });
-        // }
-        const bookIndex = cart.books.findIndex(book => book.book.toString === bookId); 
         
-        if(bookIndex !== -1) {
-            cart.books[bookIndex].quantity += quantity;
-        } else{
+        const existingItem = cart.books.find(item => item.book.toString() === bookId);
+        
+        if(existingItem) {
+            cart.books.find(item => item.quantity += 1);
+        }
+        else {
             cart.books.push({book: bookId, quantity: quantity});
         }
-
+        console.log('cart book ',cart.books)
+        
          // Cập nhật thông tin giỏ hàng (giá sách, tổng giá trị giỏ hàng, ...)
         // cart.totalPrice = cart.books.reduce((total, item) => total + item.quantity * item.book.price, 0);
         await cart.save();

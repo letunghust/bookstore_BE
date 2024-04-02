@@ -1,7 +1,5 @@
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
-// const Books = require('../models/Books');
-// const User = require('../models/User')
 const verifyToken = require('../middleware/auth')
 const BooksController = require('../controllers/BooksController')
 const UserControllers = require('../controllers/UserController')
