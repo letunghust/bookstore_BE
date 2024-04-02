@@ -9,7 +9,7 @@ const Books = new Schema({
     category: {type: String},
     bookDescription: {type: String},
     bookPDFURL: {type: String}, 
-    price: {type: Number, required: true },
+    price: {type: Number, required: true }, 
     // createdAt: {type: Date, default: Date.now}, 
     // updateAt: {type: Date, default: Date.now},
 },{

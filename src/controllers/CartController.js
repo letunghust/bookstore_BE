@@ -1,4 +1,5 @@
 const Cart = require('../models/Cart');
+const Books = require('../models/Books');
 
 // [GET] get cart 
 const getCart = async(req, res) => {
@@ -7,7 +8,7 @@ const getCart = async(req, res) => {
         if (!cart || !cart.books) {
             return res.status(404).json({message: 'Cart is empty or not found'});
         }
-        console.log(cart.books);
+        // console.log(cart.books);
         res.json(cart);
     } catch(error) {
         console.log(error);
@@ -19,14 +20,10 @@ const getCart = async(req, res) => {
 const addBookToCart = async (req, res) => {
     try{
         const userId = req.user._id;
-        console.log(userId)
         const bookId = req.params.bookId;
-        console.log(bookId)
         const quantity = req.body.quantity;
-        console.log(quantity)
 
         let cart = await Cart.findOne({user: userId});
-        console.log(cart);
 
         if (!cart) {
             cart = new Cart({ user: userId, books: [] });
@@ -34,10 +31,10 @@ const addBookToCart = async (req, res) => {
         // if (!books) {
         //     return res.status(404).send({ message: 'Book not found' });
         // }
-        const index = cart.books.findIndex(book => book.book.toString === bookId); 
+        const bookIndex = cart.books.findIndex(book => book.book.toString === bookId); 
         
-        if(index !== -1) {
-            cart.books[index].quantity += quantity;
+        if(bookIndex !== -1) {
+            cart.books[bookIndex].quantity += quantity;
         } else{
             cart.books.push({book: bookId, quantity: quantity});
         }
@@ -109,13 +106,16 @@ const clearCart = async(req, res) => {
     }   
 }
 
-// [GET] caculate total price
+// [GET] calculate total price
 const calculateTotalPrice = async(req, res) => {
     try{
         const cart = await Cart.findOne({user: req.user._id}).populate('books.book')
+        console.log(cart)
         let totalPrice = 0;
         cart.books.forEach(book => {
-            totalPrice += book.book.price * book.quantity;
+            const bookPrice = book.book && book.book.price ? book.book.price : 0;
+            const quantity = !isNaN(book.quantity) ? book.quantity : 0; 
+            totalPrice += bookPrice * quantity;
         });
         cart.total_price = totalPrice;
         await cart.save();
