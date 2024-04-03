@@ -33,7 +33,10 @@ const addBookToCart = async (req, res) => {
         const existingItem = cart.books.find(item => item.book.toString() === bookId);
         
         if(existingItem) {
-            cart.books.find(item => item.quantity += 1);
+            // cart.books.find(item => item.quantity += 1);
+            cart.books = cart.books.map(item =>
+                item.book.toString() === bookId ? { ...item, quantity: item.quantity + quantity } : item
+              );
         }
         else {
             cart.books.push({book: bookId, quantity: quantity});
