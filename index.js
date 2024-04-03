@@ -11,6 +11,12 @@ const route = require('./src/routes/index');
 app.use(cors());
 app.use(express.json())
 
+const corsOptions = {
+  origin: true, 
+  credentials: true 
+};
+app.use(cors(corsOptions));
+
 // 9QtEWA38Yiu9MkS6
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');

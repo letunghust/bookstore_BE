@@ -8,7 +8,7 @@ const getCart = async(req, res) => {
         if (!cart || !cart.books) {
             return res.status(404).json({message: 'Cart is empty or not found'});
         }
-        // console.log(cart.books);
+        // console.log(cart);
         res.json(cart);
     } catch(error) {
         console.log(error);
@@ -44,7 +44,7 @@ const addBookToCart = async (req, res) => {
         // cart.totalPrice = cart.books.reduce((total, item) => total + item.quantity * item.book.price, 0);
         await cart.save();
 
-        res.status(200).send({messsage: 'Book added to cart successfully'});
+        res.status(200).send({messsage: "Book added to cart successfully"});
     } catch(error) {
         console.log(error)
         res.status(500).send({messsage: 'Error adding booking to cart'}); 
