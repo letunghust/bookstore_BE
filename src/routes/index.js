@@ -4,6 +4,7 @@ const verifyToken = require('../middleware/auth')
 const BooksController = require('../controllers/BooksController')
 const UserControllers = require('../controllers/UserController')
 const CartController = require('../controllers/CartController')
+const PaymentController = require('../controllers/PaymentController')
 
 function route(app) {
     app.get('/', BooksController.index);
@@ -34,6 +35,10 @@ function route(app) {
     app.patch("/cart/quantity", verifyToken, CartController.updateBookQuantity);
     app.put("/clear", verifyToken, CartController.clearCart);
     app.get("/cart/totalprice", verifyToken, CartController.calculateTotalPrice);
+
+    // PAYMENT
+    app.post('/create_payment', verifyToken, PaymentController.createPaymenIntent);
+    app.post('/payment_success', verifyToken, PaymentController.handlePaymentSuccess);
 }
 
 module.exports = route;
