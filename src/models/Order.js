@@ -8,16 +8,15 @@ const OrderSchema = new Schema({
     quantity: { type: Number, required: true }
   }],
   total_price: { type: Number, required: true },
-  payment_status: { type: String, default: 'pending' }, // trạng thái thanh toán ('pending', 'paid', 'failed')
-  payment_method: { type: String }, // phương thức thanh toán (ví dụ: 'stripe')
-  shipping_address: { // địa chỉ giao hàng
-    full_name: { type: String, required: true },
-    address_line_1: { type: String, required: true },
-    address_line_2: { type: String },
-    city: { type: String, required: true },
+  payment_status: { type: String, default: 'pending' }, 
+  payment_method: { type: String },
+  shipping_address: { 
+    full_name: { type: String},
+    address_line_1: { type: String },
+    city: { type: String},
     state_province_region: { type: String },
-    postal_code: { type: String, required: true },
-    country: { type: String, required: true }
+    postal_code: { type: String},
+    country: { type: String }
   }
 }, { timestamps: true });
 
