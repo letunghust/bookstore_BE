@@ -13,6 +13,7 @@ const OrderSchema = new Schema({
   shipping_address: { 
     full_name: { type: String},
     address_line_1: { type: String },
+    address_line_2: { type: String },
     city: { type: String},
     state_province_region: { type: String },
     postal_code: { type: String},

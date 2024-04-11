@@ -1,6 +1,7 @@
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
 const verifyToken = require('../middleware/auth')
+const verifyAdmin = require('../middleware/authorization')
 const BooksController = require('../controllers/BooksController')
 const UserControllers = require('../controllers/UserController')
 const CartController = require('../controllers/CartController')
@@ -13,7 +14,7 @@ function route(app) {
     // find by category 
     app.get("/all-books", BooksController.findByCategory)
     app.get("/book/:id", BooksController.findById)
-    app.post("/upload-book", BooksController.create )
+    app.post("/upload-book", verifyToken, verifyAdmin,  BooksController.create )
     app.patch("/book/:id", BooksController.updateById)
     app.delete("/book/:id", BooksController.deleteById)
 
