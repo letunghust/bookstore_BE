@@ -15,8 +15,8 @@ function route(app) {
     app.get("/all-books", BooksController.findByCategory)
     app.get("/book/:id", BooksController.findById)
     app.post("/upload-book", verifyToken, verifyAdmin,  BooksController.create )
-    app.patch("/book/:id", BooksController.updateById)
-    app.delete("/book/:id", BooksController.deleteById)
+    app.patch("/book/:id", verifyToken, verifyAdmin, BooksController.updateById)
+    app.delete("/book/:id", verifyToken, verifyAdmin, BooksController.deleteById)
 
     // USER 
     app.get("/all-users", UserControllers.getAllUsers)

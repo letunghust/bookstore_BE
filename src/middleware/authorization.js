@@ -15,7 +15,7 @@ const verifyAdmin = async (req, res, next) => {
             return res.status(404).json({message: 'User not found'});
         }
         req.user = user;
-        console.log(req.user);
+        // console.log(req.user);
         
         if(req.user.role !== 'admin') {
             return res.status(403).json({message: 'Requires admin role'});
