@@ -6,6 +6,7 @@ const BooksController = require('../controllers/BooksController')
 const UserControllers = require('../controllers/UserController')
 const CartController = require('../controllers/CartController')
 const PaymentController = require('../controllers/PaymentController')
+const upload = require('../utils/multer.config')
 
 function route(app) {
     app.get('/', BooksController.index);
@@ -14,7 +15,7 @@ function route(app) {
     // find by category 
     app.get("/all-books", BooksController.findByCategory)
     app.get("/book/:id", BooksController.findById)
-    app.post("/upload-book", verifyToken, verifyAdmin,  BooksController.create )
+    app.post("/upload-book", verifyToken, verifyAdmin, upload.single('bookImage'),  BooksController.create )
     app.patch("/book/:id", verifyToken, verifyAdmin, BooksController.updateById)
     app.delete("/book/:id", verifyToken, verifyAdmin, BooksController.deleteById)
 
