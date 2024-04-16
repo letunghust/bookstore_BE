@@ -10,61 +10,11 @@ class BooksController {
   }
 
   // [POST] create a book
-//   create(req, res) {
-//     console.log('Recerved a request to create a book')
-
-//     upload.any()(req, res, async (err) => {
-//       if (err) {
-//         console.log('Error uploading file: ', err)
-//         return res.status(400).send("Error uploading file");
-//       }
-
-//       const file = req.files[0];
-//       const data = req.body;
-
-//       console.log('request body: ', data)
-//       if (!file) {
-//         console.log('No file uploaded');
-//         return res.status(400).send("No file uploaded");
-//       }
-
-//       try {
-//         // Upload ảnh lên Cloudinary
-//         console.log('Uploading image to cloudinary ...')
-//         const uploadResponse = await cloudinary.uploader.upload(file.path, {
-//           upload_preset: "ml_default",
-//         });
-
-//         const imageURL = uploadResponse.secure_url;
-//         console.log('image uploaded to cloudinary, url: ', imageURL);
-
-//         // Tạo đối tượng Book mới với đường dẫn ảnh từ Cloudinary
-//         const newBook = new Books({
-//           bookTitle: data.bookTitle,
-//           authorName: data.authorName,
-//           imageURL: imageURL,
-//           category: data.category,
-//           bookDescription: data.bookDescription,
-//           bookPDFURL: data.bookPDFURL,
-//           price: data.price,
-//         });
-
-//         console.log('saving new book to database...')
-//         // Lưu đối tượng Book mới vào cơ sở dữ liệu
-//         const result = await newBook.save();
-//         console.log('book saved successfully: ', result); 
-//         res.send(result);
-//       } catch (error) {
-//         res.status(500).send("Error creating the book");
-//         console.error(error);
-//       }
-//     });
-//   }
-async create(req, res) {
+  async create(req, res) {
     try {
       // Upload image to Cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
-        console.log(result)
+      // console.log(result)
       // Create new book
       const newBook = new Books({
         bookTitle: req.body.bookTitle,
@@ -75,15 +25,15 @@ async create(req, res) {
         bookPDFURL: req.body.bookPDFURL,
         price: req.body.price,
       });
-  
+
       // Save the new book to the database
       const savedBook = await newBook.save();
-  
+
       // Return the saved book data as the response
       res.json(savedBook);
     } catch (err) {
       console.log(err);
-      res.status(500).send('Error creating the book');
+      res.status(500).send("Error creating the book");
     }
   }
 
@@ -118,6 +68,33 @@ async create(req, res) {
       .catch((error) => {
         res.status(500).send("Error finding book by ID");
         console.error(error);
+      });
+  }
+
+  // [GET] find by title
+  findByTitle(req, res) {
+    const searchTerm = req.query.q;
+
+    if (!searchTerm) {
+      return res.status(400).json("Please provide a search term");
+    }
+
+    const regex = new RegExp(searchTerm, "i"); // khong phân biệt chữ hoa, chữ thường.
+
+    // Books.find({bookTitle: {$regex: regex}})
+    Books.find({
+      // bookTitle: {$regex: regex}
+      $or: [
+        { bookTitle: { $regex: regex } },
+        { bookDescription: { $regex: regex } },
+      ],
+    })
+      .then((books) => {
+        res.json(books);
+      })
+      .catch((error) => {
+        res.status(500).json("Error finding books by title");
+        console.log(error);
       });
   }
 

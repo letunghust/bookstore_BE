@@ -15,6 +15,7 @@ function route(app) {
     // find by category 
     app.get("/all-books", BooksController.findByCategory)
     app.get("/book/:id", BooksController.findById)
+    app.get("/books/search", BooksController.findByTitle);
     app.post("/upload-book", verifyToken, verifyAdmin, upload.single('bookImage'),  BooksController.create )
     app.patch("/book/:id", verifyToken, verifyAdmin, BooksController.updateById)
     app.delete("/book/:id", verifyToken, verifyAdmin, BooksController.deleteById)

@@ -10,8 +10,6 @@ const Books = new Schema({
     bookDescription: {type: String},
     bookPDFURL: {type: String}, 
     price: {type: Number, required: true }, 
-    // createdAt: {type: Date, default: Date.now}, 
-    // updateAt: {type: Date, default: Date.now},
 },{
     timestamps: true, 
 });
