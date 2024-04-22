@@ -2,6 +2,7 @@
 //   "sk_test_51P1hnME80pxaWCvIBXXXmc9Dt7m54vH7pAuI9GX0DtrNjO5vZdWSEzSTM0DR2o71mETRJYdLv62Ri740wlNPIg0c00h4EX8zgJ"
 // );
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const jwt = require('jsonwebtoken');
 const Cart = require("../models/Cart");
 const User = require("../models/User");
 const Order = require("../models/Order");
@@ -79,7 +80,14 @@ const handlePaymentSuccess = async (req, res) => {
 };
 
 const handleOrder = async (req, res) => {
-  const customerEmail = 'levantung2002thanhhoa@gmail.com';
+  const token = req.headers.authorization || req.headers.Authorization || req.headers.token; 
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+  const user = await User.findById(decoded._id);
+  const customerEmail = user.email;
+  if(!customerEmail) {
+    return res.status(400).json({message: 'Customer email is required'});
+  }
   const subject = 'Order confirmation';
   const text = 'Thank you for your order!';
 

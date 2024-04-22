@@ -39,7 +39,7 @@ function route(app) {
     // PAYMENT
     app.post('/create_payment', verifyToken, PaymentController.createPaymenIntent);
     app.post('/payment_success', verifyToken, PaymentController.handlePaymentSuccess);
-    app.post('/orders', PaymentController.handleOrder);
+    app.post('/orders', verifyToken, PaymentController.handleOrder);
 }
 
 module.exports = route;
