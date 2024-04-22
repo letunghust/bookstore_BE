@@ -1,9 +1,11 @@
-const stripe = require("stripe")(
-  "sk_test_51P1hnME80pxaWCvIBXXXmc9Dt7m54vH7pAuI9GX0DtrNjO5vZdWSEzSTM0DR2o71mETRJYdLv62Ri740wlNPIg0c00h4EX8zgJ"
-);
+// const stripe = require("stripe")(
+//   "sk_test_51P1hnME80pxaWCvIBXXXmc9Dt7m54vH7pAuI9GX0DtrNjO5vZdWSEzSTM0DR2o71mETRJYdLv62Ri740wlNPIg0c00h4EX8zgJ"
+// );
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const Cart = require("../models/Cart");
 const User = require("../models/User");
 const Order = require("../models/Order");
+const sendEmail = require("../utils/sendMail");
 
 const createPaymenIntent = async (req, res) => {
   try {
@@ -76,7 +78,22 @@ const handlePaymentSuccess = async (req, res) => {
   }
 };
 
+const handleOrder = async (req, res) => {
+  const customerEmail = 'levantung2002thanhhoa@gmail.com';
+  const subject = 'Order confirmation';
+  const text = 'Thank you for your order!';
+
+  try {
+    await sendEmail(customerEmail, subject, text); 
+    res.status(200).json({message: 'Order placed successfully'});
+  } catch(error) {
+    console.log(error);
+    res.status(500).json({message: 'Error order'}); 
+  }
+}
+
 module.exports = {
   createPaymenIntent,
   handlePaymentSuccess,
+  handleOrder,
 };

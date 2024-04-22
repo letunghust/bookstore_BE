@@ -1,33 +1,36 @@
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
 const email_name = process.env.EMAIL_NAME || 'levantung.python@gmail.com';
 const email_password = process.env.EMAIL_APP_PASSWORD || 'nfprnzodtbovpyer';
 
+// module.exports = sendMail; 
+const nodemailer = require('nodemailer');
 
 const sendMail = async (email, html) => {
-    const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false, // Use `true` for port 465, `false` for all other ports
-        auth: {
-          user: email_name,
-          pass: email_password,
-        },
-      });
-      
-      // async..await is not allowed in global scope, must use a wrapper
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: email_name,
+      pass: email_password,
+    },
+  });
 
-        // send mail with defined transport object
-        const info = await transporter.sendMail({
-          from: 'Book Store <no-reply@bookstore.email>', // sender address
-          to: email, // list of receivers
-          subject: "Reset password", // Subject line
-          html: html, // html body
-        });
-      
-        console.log("Message sent: %s", info.messageId);
-        // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+  const mailOptions = {
+    from: 'Book Store <no-reply@bookstore.email>',
+    to: email,
+    subject: 'Order successfully',
+    html: html,
+  };
 
-        return info;  
-}
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Message sent: %s', info.messageId);
+    return info;
+  } catch (error) {
+    console.error('Error sending email:', error);
+    throw error;
+  }
+};
 
-module.exports = sendMail; 
+module.exports = sendMail;
+
+// https://www.netflix.com/helloworld

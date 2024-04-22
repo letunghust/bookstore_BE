@@ -46,4 +46,5 @@ mongoose.connect(uri, { dbName: "BookInventory" })
 // console.log(process.env.EMAIL_NAME)
 // console.log(process.env.EMAIL_APP_PASSWORD)
 // console.log(process.env.JWT_SECRET)
+// console.log(process.env.STRIPE_SECRET_KEY)
 
