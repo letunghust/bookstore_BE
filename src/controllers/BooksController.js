@@ -83,11 +83,11 @@ class BooksController {
 
     // Books.find({bookTitle: {$regex: regex}})
     Books.find({
-      // bookTitle: {$regex: regex}
-      $or: [
-        { bookTitle: { $regex: regex } },
-        { bookDescription: { $regex: regex } },
-      ],
+      bookTitle: {$regex: regex}
+      // $or: [
+      //   { bookTitle: { $regex: regex } },
+      //   { bookDescription: { $regex: regex } },
+      // ],
     })
       .then((books) => {
         res.json(books);
