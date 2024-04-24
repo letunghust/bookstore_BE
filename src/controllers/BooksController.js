@@ -2,6 +2,7 @@ const Books = require("../models/Books");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cloudinary = require("../utils/cloudinary.config");
 const upload = require("../utils/multer.config");
+const { paginate } = require("mongoose-paginate-v2");
 
 class BooksController {
   // [GET] home
@@ -38,14 +39,34 @@ class BooksController {
   }
 
   // [GET] find by category
+  // findByCategory(req, res) {
+  //   let query = {};
+  //   if (req.query?.category) {
+  //     query = { category: req.query.category };
+  //   }
+
+  //   // Sử dụng phương thức find của model Books
+  //   Books.find(query)
+  //     .then((result) => {
+  //       res.send(result);
+  //     })
+  //     .catch((error) => {
+  //       res.status(500).send("Error finding books by category");
+  //       console.error(error);
+  //     });
+  // }
+
+  // [GET] find by category and paginate
   findByCategory(req, res) {
     let query = {};
+    const { page = 1, limit = 20 } = req.query;
+
     if (req.query?.category) {
       query = { category: req.query.category };
     }
 
-    // Sử dụng phương thức find của model Books
-    Books.find(query)
+    // Sử dụng paginate() để phân trang kết quả
+    Books.paginate(query, { page, limit })
       .then((result) => {
         res.send(result);
       })
@@ -83,7 +104,7 @@ class BooksController {
 
     // Books.find({bookTitle: {$regex: regex}})
     Books.find({
-      bookTitle: {$regex: regex}
+      bookTitle: { $regex: regex },
       // $or: [
       //   { bookTitle: { $regex: regex } },
       //   { bookDescription: { $regex: regex } },
