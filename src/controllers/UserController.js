@@ -94,6 +94,38 @@ const getUserById = async (req, res) => {
     }
 }
 
+// [POST] change password
+const changePassword = async (req, res) => {
+    const userId = req.user._id;
+    const { currentPassword, newPassword } = req.body;
+
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Kiểm tra mật khẩu hiện tại có đúng không
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Current password is incorrect' });
+        }
+
+        // Mã hóa mật khẩu mới
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+        // Cập nhật mật khẩu mới của người dùng
+        user.password = hashedNewPassword;
+        await user.save();
+
+        res.json({ message: 'Password updated successfully' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+
 const forgotPassword = async (req, res) => {
     try {
       const { email } = req.query;
@@ -130,5 +162,6 @@ module.exports = {
     getAllUsers,
     getUserById,
     updateUser,
+    changePassword,
     forgotPassword,
 }

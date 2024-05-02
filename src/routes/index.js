@@ -21,11 +21,12 @@ function route(app) {
     app.delete("/book/:id", verifyToken, verifyAdmin, BooksController.deleteById)
 
     // USER 
-    app.get("/all-users", UserControllers.getAllUsers)
-    app.get("/user/:id", UserControllers.getUserById)
-    app.post("/signup", UserControllers.signup)
-    app.post("/login", UserControllers.login)
+    app.get("/all-users", UserControllers.getAllUsers);
+    app.get("/user/:id", UserControllers.getUserById);
+    app.post("/signup", UserControllers.signup);
+    app.post("/login", UserControllers.login);
     app.patch("/user/:id", UserControllers.updateUser);
+    app.post("/changepassword",verifyToken, UserControllers.changePassword);
     app.get("/fogotpassword", UserControllers.forgotPassword);
 
     // CART
