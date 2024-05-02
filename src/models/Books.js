@@ -13,6 +13,7 @@ const Books = new Schema({
     bookDescription: {type: String},
     bookPDFURL: {type: String}, 
     price: {type: Number, required: true }, 
+    quantity: {type: Number, required: true }, 
 },{
     timestamps: true, 
 });
