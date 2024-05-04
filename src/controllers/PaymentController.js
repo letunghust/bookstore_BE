@@ -1,6 +1,3 @@
-// const stripe = require("stripe")(
-//   "sk_test_51P1hnME80pxaWCvIBXXXmc9Dt7m54vH7pAuI9GX0DtrNjO5vZdWSEzSTM0DR2o71mETRJYdLv62Ri740wlNPIg0c00h4EX8zgJ"
-// );
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const jwt = require('jsonwebtoken');
 const Cart = require("../models/Cart");
@@ -40,6 +37,7 @@ const createPaymenIntent = async (req, res) => {
 const handlePaymentSuccess = async (req, res) => {
   try {
     const { paymentIntentId } = req.body;
+    console.log('req body: ' ,req.body)
 
     // Lấy thông tin PaymentIntent từ Stripe
     const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
@@ -63,7 +61,9 @@ const handlePaymentSuccess = async (req, res) => {
       },
     });
 
+    console.log('order: ', order);
     // Lưu đơn hàng vào cơ sở dữ liệu
+    // await Order.save(order); 
     await order.save();
 
     // Xóa giỏ hàng sau khi thanh toán thành công

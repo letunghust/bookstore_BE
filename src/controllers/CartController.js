@@ -25,7 +25,7 @@ const addBookToCart = async (req, res) => {
         const quantity = req.body.quantity;
 
         let cart = await Cart.findOne({user: userId});
-        console.log(cart)
+        // console.log(cart)
         if (!cart) {
             cart = new Cart({ user: userId, books: [] });
         }
@@ -41,7 +41,7 @@ const addBookToCart = async (req, res) => {
         else {
             cart.books.push({book: bookId, quantity: quantity});
         }
-        console.log('cart book ',cart.books)
+        // console.log('cart book ',cart.books)
         
          // Cập nhật thông tin giỏ hàng (giá sách, tổng giá trị giỏ hàng, ...)
         // cart.totalPrice = cart.books.reduce((total, item) => total + item.quantity * item.book.price, 0);

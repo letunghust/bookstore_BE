@@ -18,6 +18,7 @@ function route(app) {
     app.get("/books/search", BooksController.findByTitle);
     app.post("/upload-book", verifyToken, verifyAdmin, upload.single('bookImage'),  BooksController.create )
     app.patch("/book/:id", verifyToken, verifyAdmin, BooksController.updateById)
+    app.patch("/bookquantity/:id", BooksController.updateQuantityById)
     app.delete("/book/:id", verifyToken, verifyAdmin, BooksController.deleteById)
 
     // USER 

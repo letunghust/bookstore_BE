@@ -142,6 +142,25 @@ class BooksController {
       });
   }
 
+  // [PATCH] update quantity by id 
+  updateQuantityById(req, res) {
+    const id = req.params.id;
+    const {quantity} = req.body;
+
+    const filter = {_id: new ObjectId(id)};
+    const updateDoc = {$set: {quantity}};
+    const options = {upsert: true};
+
+    Books.updateOne(filter, updateDoc, options)
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((error) => {
+        res.status(500).send('Error updating book quantity');
+        console.log(error); 
+      })
+  }
+
   // [DELETE] delete by ID
   deleteById(req, res) {
     const id = req.params.id;
