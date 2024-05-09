@@ -94,6 +94,27 @@ const updateBookQuantity = async(req, res) => {
     }
 }
 
+// [PUT] update cart
+const updateCart = async (req, res) => {
+    try {
+        const userId = req.user._id;
+        const {books} = req.body; 
+
+        let cart = await Cart.findOne({user: userId});
+        if(!cart) {
+            cart = new Cart({user: userId, books: []});
+        }
+
+        cart.books = books;
+        await cart.save(); 
+        
+        res.status(200).json({message: "Cart updated successfully"});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: "Error updating cart"});
+    }
+}
+
 // [PUT] clear cart
 const clearCart = async(req, res) => {
     try{
@@ -133,6 +154,7 @@ const calculateTotalPrice = async(req, res) => {
 module.exports = {
     addBookToCart, 
     updateBookQuantity,
+    updateCart,
     removeBookFromCart, 
     getCart,
     clearCart,

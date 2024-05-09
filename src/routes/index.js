@@ -35,6 +35,7 @@ function route(app) {
     app.post("/add/:bookId", verifyToken, CartController.addBookToCart);
     app.put("/remove/:bookId", verifyToken, CartController.removeBookFromCart);
     app.patch("/cart/quantity", verifyToken, CartController.updateBookQuantity);
+    app.patch("/cart/update", verifyToken, CartController.updateCart);
     app.put("/clear", verifyToken, CartController.clearCart);
     app.get("/cart/totalprice", verifyToken, CartController.calculateTotalPrice);
 
