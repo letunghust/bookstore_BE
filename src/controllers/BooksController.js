@@ -38,23 +38,19 @@ class BooksController {
     }
   }
 
-  // [GET] find by category
-  // findByCategory(req, res) {
-  //   let query = {};
-  //   if (req.query?.category) {
-  //     query = { category: req.query.category };
-  //   }
-
-  //   // Sử dụng phương thức find của model Books
-  //   Books.find(query)
-  //     .then((result) => {
-  //       res.send(result);
-  //     })
-  //     .catch((error) => {
-  //       res.status(500).send("Error finding books by category");
-  //       console.error(error);
-  //     });
-  // }
+  // [GET] get total books by category
+  getTotalBooksByCategory(req, res) {
+    Books.aggregate([
+      {$group: {_id: "$category", total: {$sum: 1}}},
+    ])
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((error) => {
+        res.status(500).send("Error getting total books by category");
+        console.log(error);
+      });
+  }
 
   // [GET] find by category and paginate
   findByCategory(req, res) {

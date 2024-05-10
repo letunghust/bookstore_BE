@@ -12,10 +12,10 @@ function route(app) {
     app.get('/', BooksController.index);
 
     // BOOK
-    // find by category 
-    app.get("/all-books", BooksController.findByCategory)
-    app.get("/book/:id", BooksController.findById)
+    app.get("/all-books", BooksController.findByCategory);
+    app.get("/book/:id", BooksController.findById);
     app.get("/books/search", BooksController.findByTitle);
+    app.get("/books/getTotalBook", BooksController.getTotalBooksByCategory);
     app.post("/upload-book", verifyToken, verifyAdmin, upload.single('bookImage'),  BooksController.create )
     app.patch("/book/:id", verifyToken, verifyAdmin, BooksController.updateById)
     app.patch("/bookquantity/:id", BooksController.updateQuantityById)
@@ -26,7 +26,7 @@ function route(app) {
     app.get("/user/:id", UserControllers.getUserById);
     app.post("/signup", UserControllers.signup);
     app.post("/login", UserControllers.login);
-    app.patch("/user/:id", UserControllers.updateUser);
+    app.patch("/user/:id", verifyToken, UserControllers.updateUser);
     app.post("/changepassword",verifyToken, UserControllers.changePassword);
     app.get("/fogotpassword", UserControllers.forgotPassword);
 
