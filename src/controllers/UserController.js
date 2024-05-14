@@ -125,7 +125,7 @@ const changePassword = async (req, res) => {
     }
 }
 
-
+// [POST] forgot password 
 const forgotPassword = async (req, res) => {
     try {
       const { email } = req.query;
@@ -138,16 +138,50 @@ const forgotPassword = async (req, res) => {
       await user.save();
   
       const resetUrl = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`;
-      const html = `Click vào link này để thay đổi mật khẩu. Link sẽ hết hạn sau 15 phút. <a href="${resetUrl}">click here</a>`;
-      const data = { to: email, html };
-      const rs = await sendMail(data);
+    //   const html = `Click vào link này để thay đổi mật khẩu. Link sẽ hết hạn sau 15 phút. <a href="${resetUrl}">click here</a>`;
+      const html = `Click vào link này để thay đổi mật khẩu. Link sẽ hết hạn sau 15 phút. <a href="${resetUrl}">${resetUrl}</a>`;
+    //   const data = { to: email, html };
+    //   const rs = await sendMail(data);
   
-      return res.status(200).json({ success: true, rs });
+    //   return res.status(200).json({ success: true, rs });
+        // await sendMail(email, 'Đặt lại mật khẩu', html);
+        await sendMail(email, ` ${html}`);
+
+        return res.status(200).json({success: true});
     } catch (error) {
       console.error(error);
       return res.status(500).json({ error: 'Internal Server Error' });
     }
   };
+
+// [PUT] reset password  
+const resetPassword = async (req, res) => {
+    try {
+        const {token} = req.params;
+        const {newPassword} = req.body;
+
+        const user = await User.findOne({
+            passwordResetToken: token, 
+            passwordResetExpires: {$gt: Data.now()},
+        });
+
+        if(!user) {
+            return res.status(400).json({error: 'Invalid or expired token'});
+        }
+
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+        user.password = hashedNewPassword;
+        user.passwordResetToken = undefined;
+        user.passwordResetExpires = undefined;
+        await user.save();
+
+        res.json({message: 'Password reset successful'});
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({message: 'Internal server error'});
+    }
+}
 
 // exports.signup = signup;
 // exports.login = login;
@@ -164,4 +198,5 @@ module.exports = {
     updateUser,
     changePassword,
     forgotPassword,
+    resetPassword,
 }

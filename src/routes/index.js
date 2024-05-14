@@ -6,7 +6,9 @@ const BooksController = require('../controllers/BooksController')
 const UserControllers = require('../controllers/UserController')
 const CartController = require('../controllers/CartController')
 const PaymentController = require('../controllers/PaymentController')
-const upload = require('../utils/multer.config')
+const OrderController = require('../controllers/OrderController')
+const upload = require('../utils/multer.config');
+
 
 function route(app) {
     app.get('/', BooksController.index);
@@ -28,7 +30,8 @@ function route(app) {
     app.post("/login", UserControllers.login);
     app.patch("/user/:id", verifyToken, UserControllers.updateUser);
     app.post("/changepassword",verifyToken, UserControllers.changePassword);
-    app.get("/fogotpassword", UserControllers.forgotPassword);
+    app.post("/fogotpassword", UserControllers.forgotPassword);
+    app.put("/resetpassword", UserControllers.resetPassword)
 
     // CART
     app.get("/cart", verifyToken, CartController.getCart);
@@ -43,6 +46,9 @@ function route(app) {
     app.post('/create_payment', verifyToken, PaymentController.createPaymenIntent);
     app.post('/payment_success', verifyToken, PaymentController.handlePaymentSuccess);
     app.post('/orders', verifyToken, PaymentController.handleOrder);
+
+    // ORDER
+    app.get('/totalRevenue', OrderController.getTotalRevenue);
 }
 
 module.exports = route;
