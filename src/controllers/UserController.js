@@ -134,8 +134,12 @@ const forgotPassword = async (req, res) => {
       const user = await User.findOne({ email });
       if (!user) return res.status(404).json({ error: 'User not found' });
   
-      const resetToken = user.createPasswordChangedToken();
+      const resetToken =  user.createPasswordChangedToken();
+    //   const resetToken =  "123";
+
+    //   console.log(resetToken)
       await user.save();
+      
   
       const resetUrl = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`;
     //   const html = `Click vào link này để thay đổi mật khẩu. Link sẽ hết hạn sau 15 phút. <a href="${resetUrl}">click here</a>`;
@@ -147,7 +151,7 @@ const forgotPassword = async (req, res) => {
         // await sendMail(email, 'Đặt lại mật khẩu', html);
         await sendMail(email, ` ${html}`);
 
-        return res.status(200).json({success: true});
+        return res.status(200).json({success: true, resetToken});
     } catch (error) {
       console.error(error);
       return res.status(500).json({ error: 'Internal Server Error' });
@@ -157,14 +161,20 @@ const forgotPassword = async (req, res) => {
 // [PUT] reset password  
 const resetPassword = async (req, res) => {
     try {
-        const {token} = req.params;
+        // const {token} = req.params;
+        const token = req.query.token;
         const {newPassword} = req.body;
 
         const user = await User.findOne({
             passwordResetToken: token, 
-            passwordResetExpires: {$gt: Data.now()},
+            // passwordResetExpires: {$gt: Date.now()},
         });
-
+        // console.log(req.body)
+        // console.log(req.params)
+        // console.log('query', req.query)
+        // console.log('token', token)
+        // console.log('new password', newPassword)
+        // console.log('user', user)
         if(!user) {
             return res.status(400).json({error: 'Invalid or expired token'});
         }
