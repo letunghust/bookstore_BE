@@ -19,8 +19,6 @@ const User = new Schema({
         type: Array,
         default: [],
     },
-    // address: [{type: mongoose.Types.ObjectId, ref: 'Address'}],
-    // wishlist: [{type: mongoose.Types.ObjectId, ref: 'Product'}],
     isBlocked: {
         type: Boolean,
         default: false,
@@ -35,22 +33,17 @@ const User = new Schema({
         type: String,
     },
     passwordResetExpires: {
-        // type: String, 
         type: Date,
     },
-    // createdAt: {type: Date, default: Date.now}, 
-    // updateAt: {type: Date, default: Date.now},
 }, {
     timestamps: true, 
 });
 
 User.methods = {
     createPasswordChangedToken: function() {
-        const resetToken = crypto.randomBytes(32).toString('hex')
-        this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex') // mã hóa resetToken 
-        // this.passwordResetExpires = Date.now() + 15 * 60 * 1000;
+        const resetToken = crypto.randomBytes(32).toString('hex');
+        this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex'); // mã hóa resetToken 
         this.passwordResetExpires = new Date(Date.now() + 15 * 60 * 1000);
-        // return resetToken; 
         return this.passwordResetToken;
     }
 }

@@ -5,6 +5,7 @@ const User = require("../models/User");
 const Order = require("../models/Order");
 const sendEmail = require("../utils/sendMail");
 
+// [POST] create payment when click purchase
 const createPaymenIntent = async (req, res) => {
   try {
     const { cartId, userId } = req.body;
@@ -34,14 +35,15 @@ const createPaymenIntent = async (req, res) => {
   }
 };
 
+// [POST] handle payment success when create payment intent 
 const handlePaymentSuccess = async (req, res) => {
   try {
     const { paymentIntentId } = req.body;
-    console.log('req body: ' ,req.body)
+    // console.log('req body: ' ,req.body)
 
     // Lấy thông tin PaymentIntent từ Stripe
     const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
-    console.log('payment intent:  ',paymentIntent);
+    // console.log('payment intent:  ',paymentIntent);
 
     const userId = paymentIntent.metadata.userId;
     const cartId = paymentIntent.metadata.cartId;
@@ -61,7 +63,7 @@ const handlePaymentSuccess = async (req, res) => {
       },
     });
 
-    console.log('order: ', order);
+    // console.log('order: ', order);
     // Lưu đơn hàng vào cơ sở dữ liệu
     // await Order.save(order); 
     await order.save();
@@ -79,6 +81,7 @@ const handlePaymentSuccess = async (req, res) => {
   }
 };
 
+// [POST] send email when payment success
 const handleOrder = async (req, res) => {
   const token = req.headers.authorization || req.headers.Authorization || req.headers.token; 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);

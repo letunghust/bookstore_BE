@@ -49,6 +49,7 @@ function route(app) {
 
     // ORDER
     app.get('/totalRevenue', OrderController.getTotalRevenue);
+    app.get('/myorders', verifyToken, OrderController.getUserOrders);
 }
 
 module.exports = route;
