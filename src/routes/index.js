@@ -49,6 +49,7 @@ function route(app) {
     app.post('/orders', verifyToken, PaymentController.handleOrder);
 
     // ORDER
+    app.get('/allorders', OrderController.getAllOrders);
     app.get('/totalRevenue', OrderController.getTotalRevenue);
     app.get('/myorders', verifyToken, OrderController.getUserOrders);
 }

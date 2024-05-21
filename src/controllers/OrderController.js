@@ -1,5 +1,16 @@
 const Order = require('../models/Order');
 
+// [GET] get all order
+const getAllOrders = async (req, res) => {
+    try {
+        const orders = await Order.find();
+        res.json(orders);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error: error.message});
+    }
+}
+
 // [GET] get total revenue
 const getTotalRevenue = async (req, res) => {
     try{
@@ -29,6 +40,7 @@ const getUserOrders = async (req, res) => {
 }
 
 module.exports = {
+    getAllOrders,
     getTotalRevenue,
     getUserOrders,
 }
