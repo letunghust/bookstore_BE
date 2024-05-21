@@ -35,6 +35,10 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
+    if(user.isBlocked) {
+      return res.status(403).json({message: 'User is blocked'});
+    }
+
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
@@ -187,6 +191,24 @@ const resetPassword = async (req, res) => {
   }
 };
 
+// [PATCH] block user
+const blockUser = async (req, res) => {
+  try {
+    const { isBlocked } = req.body;
+    const user = await User.findByIdAndUpdate(req.params.id, { isBlocked }, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    return res.status(200).json({ message: 'User block status updated', user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
 module.exports = {
   signup,
   login,
@@ -196,4 +218,5 @@ module.exports = {
   changePassword,
   forgotPassword,
   resetPassword,
+  blockUser,
 };

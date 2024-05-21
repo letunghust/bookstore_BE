@@ -31,7 +31,8 @@ function route(app) {
     app.patch("/user/:id", verifyToken, UserControllers.updateUser);
     app.post("/changepassword",verifyToken, UserControllers.changePassword);
     app.post("/forgotpassword", UserControllers.forgotPassword);
-    app.put("/resetpassword", UserControllers.resetPassword)
+    app.put("/resetpassword", UserControllers.resetPassword);
+    app.patch("/blockuser/:id", UserControllers.blockUser);
 
     // CART
     app.get("/cart", verifyToken, CartController.getCart);
