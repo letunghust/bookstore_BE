@@ -3,6 +3,8 @@ const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const sendMail = require("../utils/sendMail");
+const multer = require('../utils/multer.config');
+const cloudinary = require('../utils/cloudinary.config');
 
 // [POST] sign up user
 const signup = async (req, res) => {
@@ -208,6 +210,24 @@ const blockUser = async (req, res) => {
   }
 };
 
+// [POST] upload avatar 
+const uploadAvatar = async (req, res) => {
+  const userId = req.user._id;
+  try {
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'avatars',
+    });
+
+    const user = await User.findById(userId);
+    user.avatar = result.secure_url;
+    await user.save();
+
+    res.status(200).json({message: 'Avatar uploaded successfully', avatar: result.secure_url});
+  } catch(error) {
+    console.log('Error uploading avatar: ', error);
+    res.status(500).json({error: 'Failed to upload avatar'});
+  }
+}
 
 module.exports = {
   signup,
@@ -219,4 +239,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   blockUser,
+  uploadAvatar,
 };

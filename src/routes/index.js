@@ -8,6 +8,7 @@ const CartController = require('../controllers/CartController')
 const PaymentController = require('../controllers/PaymentController')
 const OrderController = require('../controllers/OrderController')
 const upload = require('../utils/multer.config');
+const multer = require('multer');
 
 
 function route(app) {
@@ -33,6 +34,7 @@ function route(app) {
     app.post("/forgotpassword", UserControllers.forgotPassword);
     app.put("/resetpassword", UserControllers.resetPassword);
     app.patch("/blockuser/:id", UserControllers.blockUser);
+    app.post('/uploadavatar', verifyToken, upload.single('avatar'), UserControllers.uploadAvatar);
 
     // CART
     app.get("/cart", verifyToken, CartController.getCart);
