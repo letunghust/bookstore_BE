@@ -3,7 +3,16 @@ const Order = require('../models/Order');
 // [GET] get all order
 const getAllOrders = async (req, res) => {
     try {
-        const orders = await Order.find();
+        const orders = await Order.find()
+            .populate({
+                path: 'user',
+                select: 'name email'
+            })
+            .populate({
+                path: 'books.book',
+                select: 'bookTitle'
+            });
+            
         res.json(orders);
     } catch (error) {
         console.log(error);
