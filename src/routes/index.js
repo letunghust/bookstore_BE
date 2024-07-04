@@ -30,6 +30,7 @@ function route(app) {
     app.post("/signup", UserControllers.signup);
     app.post("/login", UserControllers.login);
     app.patch("/user/:id", verifyToken, UserControllers.updateUser);
+    app.patch("/userRole/:id", UserControllers.updateUserRole);
     app.post("/changepassword",verifyToken, UserControllers.changePassword);
     app.post("/forgotpassword", UserControllers.forgotPassword);
     app.put("/resetpassword", UserControllers.resetPassword);
