@@ -23,7 +23,9 @@ const getAllOrders = async (req, res) => {
 // [GET] get all pending orders 
 const getPendingOrders = async (req, res) => {
     try {
-        const pendingOrders = await Order.find({order_status: 'pending'});
+        const pendingOrders = await Order.find({order_status: 'pending'})
+            .populate('user', 'name')
+            .lean();
         if(!pendingOrders) {
             return res.status(404).json({message: 'not found!'})
         }
