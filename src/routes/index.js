@@ -53,8 +53,10 @@ function route(app) {
 
     // ORDER
     app.get('/allorders', OrderController.getAllOrders);
+    app.get('/allpendingorders', OrderController.getPendingOrders);
     app.get('/totalRevenue', OrderController.getTotalRevenue);
     app.get('/myorders', verifyToken, OrderController.getUserOrders);
+    app.patch('/orderconfirm/:id', OrderController.confirmOrder);
 }
 
 module.exports = route;

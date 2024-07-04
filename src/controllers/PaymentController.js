@@ -61,6 +61,7 @@ const handlePaymentSuccess = async (req, res) => {
       shipping_address: {
         country: ""
       },
+      order_status: "pending",
     });
 
     // console.log('order: ', order);

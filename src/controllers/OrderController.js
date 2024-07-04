@@ -1,6 +1,6 @@
 const Order = require('../models/Order');
 
-// [GET] get all order
+// [GET] get all orders
 const getAllOrders = async (req, res) => {
     try {
         const orders = await Order.find()
@@ -16,6 +16,20 @@ const getAllOrders = async (req, res) => {
         res.json(orders);
     } catch (error) {
         console.log(error);
+        res.status(500).json({error: error.message});
+    }
+}
+
+// [GET] get all pending orders 
+const getPendingOrders = async (req, res) => {
+    try {
+        const pendingOrders = await Order.find({order_status: 'pending'});
+        if(!pendingOrders) {
+            return res.status(404).json({message: 'not found!'})
+        }
+
+        res.json(pendingOrders);
+    } catch (error) {
         res.status(500).json({error: error.message});
     }
 }
@@ -48,8 +62,27 @@ const getUserOrders = async (req, res) => {
     }
 }
 
+// [PATCH] confirm order
+const confirmOrder = async (req, res) => {
+    const orderId = req.params.id;
+
+    try {
+        const order = await Order.findByIdAndUpdate(orderId, {order_status: 'confirmed'});
+
+        if(!order) {
+            return res.status(404).json({message: 'Order not found'});
+        }
+
+        res.json(order);
+    } catch(error) {
+        res.status(500).json({error: error.message});
+    }
+}
+
 module.exports = {
     getAllOrders,
+    getPendingOrders,
     getTotalRevenue,
     getUserOrders,
+    confirmOrder,
 }
